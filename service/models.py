@@ -165,13 +165,13 @@ class Product(db.Model):
         :type app: Flask
         """
         logger.info("Initializing database")
-        
+
         # Check if SQLAlchemy is already initialized on this app
         if not hasattr(app, 'extensions') or 'sqlalchemy' not in app.extensions:
             # This is where we initialize SQLAlchemy from the Flask app
             db.init_app(app)
             app.app_context().push()
-        
+
         # Always create tables (this is safe to call multiple times)
         db.create_all()  # make our sqlalchemy tables
 
