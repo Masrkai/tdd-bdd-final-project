@@ -45,6 +45,7 @@ def init_db(app):
     Product.init_db(app)
 
 
+
 class DataValidationError(Exception):
     """Used for an data validation errors when deserializing"""
 
@@ -155,18 +156,23 @@ class Product(db.Model):
     # CLASS METHODS
     ##################################################
 
+
     @classmethod
     def init_db(cls, app: Flask):
         """Initializes the database session
 
         :param app: the Flask app
-        :type data: Flask
-
+        :type app: Flask
         """
         logger.info("Initializing database")
-        # This is where we initialize SQLAlchemy from the Flask app
-        db.init_app(app)
-        app.app_context().push()
+        
+        # Check if SQLAlchemy is already initialized on this app
+        if not hasattr(app, 'extensions') or 'sqlalchemy' not in app.extensions:
+            # This is where we initialize SQLAlchemy from the Flask app
+            db.init_app(app)
+            app.app_context().push()
+        
+        # Always create tables (this is safe to call multiple times)
         db.create_all()  # make our sqlalchemy tables
 
     @classmethod
