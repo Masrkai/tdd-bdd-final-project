@@ -181,6 +181,27 @@ class TestProductRoutes(TestCase):
         self.assertIn("was not found", data["message"])
 
 
+    def test_read_product(self):
+        """It should Read a Product"""
+        # create a product to read
+        test_product = ProductFactory()
+        response = self.client.post(BASE_URL, json=test_product.serialize())
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        created_product = response.get_json()
+
+        # read the product back
+        response = self.client.get(f"{BASE_URL}/{created_product['id']}")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        read_product = response.get_json()
+
+        # verify the data matches
+        self.assertEqual(read_product["id"], created_product["id"])
+        self.assertEqual(read_product["name"], created_product["name"])
+        self.assertEqual(read_product["description"], created_product["description"])
+        self.assertEqual(read_product["price"], created_product["price"])
+        self.assertEqual(read_product["available"], created_product["available"])
+
+
     def test_update_product(self):
         """It should Update an existing Product"""
         # create a product to update
