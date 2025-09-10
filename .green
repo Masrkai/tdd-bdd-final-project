@@ -1,0 +1,55 @@
+# [green]
+# # Test discovery
+# test-pattern = test*.py
+# file-pattern = test*.py
+
+# # Directories
+# tests = tests/
+# sources = src/
+
+# # Coverage settings
+# run-coverage = true
+# coverage-report = true
+# coverage-source = src/
+# coverage-omit = 
+#     */tests/*
+#     */test_*
+#     setup.py
+#     */venv/*
+#     */.venv/*
+#     */site-packages/*
+
+# # Output settings
+# verbose = 3
+# quiet-stdout = false
+# debug = false
+
+# # Test execution
+# failfast = false
+# keepdb = false
+
+# # Coverage output format
+# coverage-term = true
+# coverage-term-missing = true
+
+# # Minimum coverage threshold (optional - uncomment to enforce)
+# # minimum-coverage = 80
+
+# # Process settings
+# processes = 1
+# maxtasksperchild = 0
+
+# # Other useful options
+# no-skip-report = true
+# allow-stdout = false
+# clear-screen = true
+
+# # Exclude patterns (if needed)
+# ignore-files = 
+#     __pycache__
+#     *.pyc
+#     .git
+#     .tox
+#     build/
+#     dist/
+#     *.egg-info

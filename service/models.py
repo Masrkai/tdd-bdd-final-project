@@ -183,17 +183,10 @@ class Product(db.Model):
 
     @classmethod
     def find(cls, product_id: int):
-        """Finds a Product by it's ID
-
-        :param product_id: the id of the Product to find
-        :type product_id: int
-
-        :return: an instance with the product_id, or None if not found
-        :rtype: Product
-
-        """
+        """Finds a Product by its ID"""
         logger.info("Processing lookup for id %s ...", product_id)
-        return cls.query.get(product_id)
+        return db.session.get(cls, product_id)
+
 
     @classmethod
     def find_by_name(cls, name: str) -> list:
